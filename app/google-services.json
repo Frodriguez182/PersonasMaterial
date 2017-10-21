@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "475487227833",
-    "firebase_url": "https://personasmaterial-bd24a.firebaseio.com",
-    "project_id": "personasmaterial-bd24a",
-    "storage_bucket": "personasmaterial-bd24a.appspot.com"
+    "project_number": "810156733938",
+    "firebase_url": "https://personasmaterialdiplomado.firebaseio.com",
+    "project_id": "personasmaterialdiplomado",
+    "storage_bucket": "personasmaterialdiplomado.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:475487227833:android:7b2a84934362964c",
+        "mobilesdk_app_id": "1:810156733938:android:7b2a84934362964c",
         "android_client_info": {
           "package_name": "com.example.android.personasmaterialdiplomado"
         }
       },
       "oauth_client": [
         {
-          "client_id": "475487227833-1dg7e4q5mondp3lo6lon9pj33esno3km.apps.googleusercontent.com",
+          "client_id": "810156733938-nlr1l32iintuuiobll59g6tca1n9trd1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.android.personasmaterialdiplomado",
-            "certificate_hash": "f479ae21f191312e011d6ef84a14f3a4f84978ea"
+            "certificate_hash": "295105eb2219365f4f5f0c5154f3576f579a1a12"
           }
         },
         {
-          "client_id": "475487227833-h3r15ale8umprhvmvtbv1phjnnf889cp.apps.googleusercontent.com",
+          "client_id": "810156733938-bfeaqulm0h9to4lb3rdgv93dql3u91vn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjIsH_P_O5RS3r_AxKYXRQiTUIwF8xb5s"
+          "current_key": "AIzaSyAJIBleJfE6IIfk5vuJpllNehVkwgfiAN8"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "475487227833-h3r15ale8umprhvmvtbv1phjnnf889cp.apps.googleusercontent.com",
+              "client_id": "810156733938-bfeaqulm0h9to4lb3rdgv93dql3u91vn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

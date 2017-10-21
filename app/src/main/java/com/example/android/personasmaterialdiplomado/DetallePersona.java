@@ -31,7 +31,7 @@ public class DetallePersona extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_persona);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
+       setSupportActionBar(toolbar);
 
         ced =(TextView)findViewById(R.id.lblCedulaD);
         nomb = (TextView)findViewById(R.id.lblNombreD);
@@ -62,6 +62,8 @@ public class DetallePersona extends AppCompatActivity {
 
 
     }
+
+
 
     public void eliminar(View v){
         String positivo,negativo;
@@ -99,5 +101,12 @@ public class DetallePersona extends AppCompatActivity {
         finish();
         Intent i = new Intent(DetallePersona.this,Principal.class);
         startActivity(i);
+    }
+
+    public void ModificarPersona(View v) {
+        Intent i = new Intent(DetallePersona.this,Modificar.class);
+        i.putExtra("datos",bundle);
+        startActivity(i);
+
     }
 }

@@ -77,7 +77,7 @@ public class Principal extends AppCompatActivity implements  AdaptadorPersona.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                i = new Intent(Principal.this,CrearPersonas.class);
+              i = new Intent(Principal.this,CrearPersonas.class);
                 startActivity(i);
             }
         });
