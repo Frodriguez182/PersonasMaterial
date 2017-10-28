@@ -2,17 +2,24 @@ package com.example.android.personasmaterialdiplomado;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.w3c.dom.Text;
 
@@ -31,10 +38,16 @@ public class CrearPersonas extends AppCompatActivity {
     private Spinner sexo;
     private ArrayAdapter<String> adapter;
     private String[] opc;
+    private Uri filePath;
+    private ImageView foto;
+    private StorageReference storageReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_personas);
+
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         txtCedula = (EditText)findViewById(R.id.txtCedula);
         txtNombre = (EditText)findViewById(R.id.txtNombre);
@@ -48,7 +61,8 @@ public class CrearPersonas extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opc);
         sexo.setAdapter(adapter);
 
-       iniciar_fotos();
+       foto = (ImageView)findViewById(R.id.fotoCrear);
+        iniciar_fotos();
 
 
     }
@@ -63,9 +77,12 @@ public class CrearPersonas extends AppCompatActivity {
     public void guadar(View v){
 
         if(validar()) {
-            Persona p = new Persona(Metodos.fotoAleatoria(fotos), txtCedula.getText().toString(),
+            String id = Datos.getId();
+            String foto = id+".jpg";
+            Persona p = new Persona(id, foto,txtCedula.getText().toString(),
                     txtNombre.getText().toString(), txtApellido.getText().toString(), sexo.getSelectedItemPosition());
             p.guardar();
+            subir_foto(foto);
             Snackbar.make(v, res.getString(R.string.mensaje_guardado), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             limpiar();
@@ -82,7 +99,7 @@ public class CrearPersonas extends AppCompatActivity {
         txtApellido.setText("");
         sexo.setSelection(0);
         txtCedula.requestFocus();
-
+        foto.setImageDrawable(ResourcesCompat.getDrawable(res,android.R.drawable.ic_menu_gallery,null));
     }
 
     public void onBackPressed(){
@@ -110,5 +127,28 @@ public class CrearPersonas extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    public void seleccionar_foto(View v){
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i,res.getString(R.string.mensaje_seleccion)),1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==1){
+            filePath = data.getData();
+            if(filePath != null){
+               foto.setImageURI(filePath);
+            }
+        }
+    }
+
+    public void subir_foto(String foto){
+        StorageReference childRef = storageReference.child(foto);
+        UploadTask uploadTask = childRef.putFile(filePath);
+
     }
 }
